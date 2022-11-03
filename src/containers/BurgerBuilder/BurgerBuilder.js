@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import Burger from '../../components/Burger/Burger';
 import Auxiliary from '../../hoc/Auxiliary';
 import BuildControls from '../../components/Burger/BuildsControls/BuildsControls';
-
+import Modal from '../../components/UI/Modal/Modal';
+import OrderSummary from '../../components/Burger/OrderSummary/OrderSummary';
 const INGREDIENT_PRICES = {
     salad: 0.5,
     cheese: 0.4,
@@ -23,6 +24,7 @@ class BurgerBuilder extends Component {
         },
         totalPrice: 4,
         purchasable:false,
+        purchasing:false,
       
     }
 
@@ -71,7 +73,10 @@ class BurgerBuilder extends Component {
         this.Updatepurchasable(updatedIngredients);
        
     }
-
+    
+    purchaseHandler =()=>{
+        this.setState({purchasing: true})
+    }
 
     render () {
         const disabledInfo = {
@@ -82,12 +87,16 @@ class BurgerBuilder extends Component {
         }
         return (
             <Auxiliary>
+                <Modal show={this.state.purchasing} >
+                    <OrderSummary ingredients={this.state.ingredients}/>
+                </Modal>
                 <Burger ingredients={this.state.ingredients} />
                 <BuildControls
                 ingredientAdded={this.addIngredientHandler}
                 ingredientRemoved={this.removeIngredientHandler}
                 price={this.state.totalPrice}
                 purchasable={this.state.purchasable}
+                order={this.purchaseHandler}
                 disabled={disabledInfo}/>
             </Auxiliary>
         );
