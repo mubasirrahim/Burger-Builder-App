@@ -77,6 +77,12 @@ class BurgerBuilder extends Component {
     purchaseHandler =()=>{
         this.setState({purchasing: true})
     }
+    cancelPurcaseHandler=()=>{
+        this.setState({purchasing:false})
+    }
+    continuePurcaseHandler=()=>{
+        alert("You continue");
+    }
 
     render () {
         const disabledInfo = {
@@ -87,8 +93,13 @@ class BurgerBuilder extends Component {
         }
         return (
             <Auxiliary>
-                <Modal show={this.state.purchasing} >
-                    <OrderSummary ingredients={this.state.ingredients}/>
+                <Modal show={this.state.purchasing}
+                closemodel={this.cancelPurcaseHandler} >
+                    <OrderSummary
+                     ingredients={this.state.ingredients}
+                     cancelPurcase={this.cancelPurcaseHandler}
+                     continuePurcase={this.continuePurcaseHandler}
+                     />
                 </Modal>
                 <Burger ingredients={this.state.ingredients} />
                 <BuildControls

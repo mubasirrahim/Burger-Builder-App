@@ -1,5 +1,7 @@
 import React from 'react'
 import Auxiliary from '../../../hoc/Auxiliary'
+import Button from '../../UI/Button/Button'
+
 export default function OrderSummary(props) {
     const orderlist = Object.keys(props.ingredients)
     .map((igkey)=>{
@@ -18,6 +20,8 @@ export default function OrderSummary(props) {
     <p>
         Continue to Checkout?
     </p>
+    <Button clicked={props.cancelPurcase} btntype ="Danger">CANCEL</Button>
+    <Button clicked={props.continuePurcase} btntype= "Success">CONRTINUE </Button>
    </Auxiliary>
   )
 }
