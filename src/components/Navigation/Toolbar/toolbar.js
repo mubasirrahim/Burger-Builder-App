@@ -5,7 +5,7 @@ import Navigationitems from '../Navigationitems/Navigationitems'
 function toolbar(props) {
   return (
     <header className={classes.Toolbar}>
-        <div onClick={props.clicked}>Menu</div>
+        <div className={classes.MobileOnly} onClick={props.clicked}>Menu</div>
         <div className={classes.Logo}>
             <Logo/>
         </div>
